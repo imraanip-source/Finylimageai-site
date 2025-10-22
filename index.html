@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Finyl Image AI</title>
+  <link rel="stylesheet" href="styles.css" />
+  <meta name="description" content="Finyl Image AI — FIREneXus-powered imaging and SmartCity experiences." />
+</head>
+<body>
+  <header class="wrap">
+    <h1>Finyl Image AI</h1>
+    <div id="status" class="badge">Checking FIREneXus…</div>
+  </header>
+  <main class="wrap">
+    <section class="card">
+      <h2>FIREneXus Connectivity</h2>
+      <p>Verify the live connection between this website and the FIREneXus Core.</p>
+      <button id="pingBtn">Ping API</button>
+      <pre id="pingOut" class="mono"></pre>
+    </section>
+    <section class="card">
+      <h2>Contact / Event Demo</h2>
+      <form id="evtForm" class="grid">
+        <label>
+          Your email
+          <input type="email" name="email" required />
+        </label>
+        <label class="col-span-2">
+          Message
+          <textarea name="message" rows="4" required></textarea>
+        </label>
+        <button class="col-span-2" type="submit">Send</button>
+      </form>
+      <pre id="evtOut" class="mono"></pre>
+    </section>
+  </main>
+  <footer class="wrap small">
+    <a href="/privacy.html">Privacy Policy</a> •
+    <a href="/terms.html">Terms of Service</a>
+    <div class="muted">Powered by FIREneXus</div>
+  </footer>
+  <script src="app.js"></script>
+</body>
+</html>

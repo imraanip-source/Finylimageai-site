@@ -1,0 +1,10 @@
+const API_BASE = "https://firenexus-api.onrender.com";
+const statusEl=document.getElementById("status");
+const pingBtn=document.getElementById("pingBtn");
+const pingOut=document.getElementById("pingOut");
+const evtForm=document.getElementById("evtForm");
+const evtOut=document.getElementById("evtOut");
+async function refreshStatus(){try{const r=await fetch(`${API_BASE}/health`,{cache:"no-store"});const d=await r.json();if(d?.ok){statusEl.textContent="FIREneXus: Online";statusEl.classList.remove("bad");statusEl.classList.add("good")}else throw new Error("not ok")}catch{statusEl.textContent="FIREneXus: Offline";statusEl.classList.remove("good");statusEl.classList.add("bad")}};
+pingBtn.addEventListener("click",async()=>{pingOut.textContent="Requesting…";try{const r=await fetch(`${API_BASE}/`);pingOut.textContent=JSON.stringify(await r.json(),null,2)}catch(e){pingOut.textContent=`Error: ${e.message}`}});
+evtForm.addEventListener("submit",async(e)=>{e.preventDefault();const fd=new FormData(evtForm);const payload={type:"contact",scene:"website",ts:Date.now(),meta:{email:fd.get("email"),message:fd.get("message")}};evtOut.textContent="Sending…";try{const r=await fetch(`${API_BASE}/events`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});evtOut.textContent=JSON.stringify(await r.json(),null,2);evtForm.reset()}catch(err){evtOut.textContent=`Error: ${err.message}`}});
+refreshStatus();
